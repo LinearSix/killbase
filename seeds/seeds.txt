@@ -1,1 +1,0 @@
-COPY assassins FROM 'seeds.csv' DELIMITER ',' CSV;
