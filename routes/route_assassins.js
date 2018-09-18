@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const knex = require('../db/knex')('development');
+const knex = require('../db/knex');
 
 // list all shops
 router.get('/assassins', (req, res, next) => {
@@ -10,7 +10,7 @@ router.get('/assassins', (req, res, next) => {
     .orderBy('kills')
     .then((assassins) => {
       res.send(assassins);
-      // res.render('index', {test: 'test'})
+      res.render('index', {test: 'test'})
     })
     .catch((err) => {
       next(err);
