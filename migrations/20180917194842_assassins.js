@@ -7,6 +7,7 @@ exports.up = function(knex) {
         table.integer('age');
         table.integer('price').notNullable().defaultTo(0);
         table.decimal('rating', 2, 1).notNullable().defaultTo(0);
+        table.integer('kills').notNullable().defaultTo(0);
     })
 };
 
