@@ -15,8 +15,8 @@ const logger = require('morgan');
 app.set('views', path.join(__dirname, 'views'));
 
 // Set the folder for css & java scripts
-// app.use(express.static(path.join(__dirname, 'css')))
-// app.use(express.static(path.join(__dirname, 'node_modules')))
+app.use(express.static(path.join(__dirname, 'css')))
+app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs')
@@ -26,13 +26,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const assassins = require('./routes/route_assassins');
+const index = require('./routes/index');
+const assassins_show = require('./routes/route_assassins');
+const contract_add = require('./routes/route_contract_add');
+const contract_submit = require('./routes/route_contract_submit');
 
-app.use(assassins);
+app.use(index);
+app.use(assassins_show);
+app.use(contract_add);
+app.use(contract_submit);
 
-app.get('/', function(req, res){ res.redirect('/assassins')});
-
-// app.use(express.static(__dirname + 'css'));
+app.get('/', function(req, res){ res.redirect(index)});
 
 app.use((_req, res) => {
     res.sendStatus(404);

@@ -4,9 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+    <title>KillBase</title>
 </head>
 <body>
-    <h1>Index!</h1>
+    <% include ./partials/nav %>
+    <table>
+        <tr>
+            <td class="table_title" colspan="8"><h3>Meet the Assassins...</h3></td>
+        </tr>
+        <tr>
+            <td><a href="/assassins/id"><strong>Assassin ID</strong></a></td>
+            <td><a href="/assassins/name"><strong>Assassin Name</strong></a></td>
+            <td><strong>Contact Info</strong></td>
+            <td><a href="/assassins/weapon"><strong>Weapon of Choice</strong></a></td>
+            <td><a href="/assassins/age"><strong>Age</strong></a></td>
+            <td><a href="/assassins/price"><strong>Price</strong></a></td>
+            <td><a href="/assassins/rating"><strong>Rating</strong></a></td>
+            <td><a href="/assassins/kills"><strong>Kills</strong></a></td>
+        </tr>
+        <% for(var i=0; i<assassins.length; i++) {%>
+        <tr>
+            <td><%= assassins[i].assassin_id %></td>
+            <td><%= assassins[i].assassin_name %></td>
+            <td><%= assassins[i].assassin_contact %></td>
+            <td><%= assassins[i].weapon %></td>
+            <td><%= assassins[i].age %></td>
+            <td>$<%= assassins[i].price %>K</td>
+            <td><%= assassins[i].rating %></td>
+            <td><%= assassins[i].kills %></td>
+        </tr>
+        <% } %>
+    </table>
 </body>
 </html>

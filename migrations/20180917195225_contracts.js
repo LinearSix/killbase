@@ -3,7 +3,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('contracts', (table) => {
         table.increments('contract_id').primary();
         table.integer('contract_client_id');
-        table.foreign('contract_client_id').references('client_id').inTable('clients');
+        table.foreign('contract_client_id').onDelete('CASCADE').references('client_id').inTable('clients');
         table.integer('contract_target_id').defaultTo(null);
         table.foreign('contract_target_id').onDelete('CASCADE').references('target_id').inTable('targets');
         table.decimal('budget', 5).notNullable().defaultTo(0);

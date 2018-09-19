@@ -4,7 +4,7 @@ exports.up = function(knex) {
         table.increments('target_id').primary();
         table.string('target_name').notNullable().defaultTo('');
         table.string('location').notNullable().defaultTo('');
-        table.string('photo');
+        table.string('target_photo');
         table.integer('security').notNullable().defaultTo(0);
     })
 };

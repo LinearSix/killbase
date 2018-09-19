@@ -5,12 +5,12 @@ const router = express.Router();
 const knex = require('../db/knex');
 
 // list all shops
-router.get('/assassins', (req, res, next) => {
+router.get('/', (req, res, next) => {
   knex('assassins')
     .orderBy('kills', 'desc')
     .then((assassins) => {
       // res.send(assassins);
-      res.render('assassins', {assassins})
+      res.render('index', {assassins})
     })
     .catch((err) => {
       next(err);
