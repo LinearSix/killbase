@@ -24,7 +24,7 @@ module.exports = {
   },
 
   production: {
-    client: 'pg',
+    client: 'postgresql',
     connection: {
       database: 'postgresql-lively-62295',
       user:     'linearsix@gmail.com',
