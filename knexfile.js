@@ -27,8 +27,8 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'postgresql-lively-62295',
-      user:     'username',
-      password: 'password'
+      user:     'linearsix@gmail.com',
+      password: '1HerokuIsEnough!'
     },
     pool: {
       min: 2,
