@@ -15,7 +15,7 @@ const logger = require('morgan');
 app.set('views', path.join(__dirname, 'views'));
 
 // Set the folder for css & java scripts
-app.use(express.static(path.join(__dirname, 'css')))
+app.use(express.static('./css'))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Set the view engine to ejs
@@ -28,11 +28,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const index = require('./routes/index');
 const assassins_show = require('./routes/route_assassins');
+// const assassins_id = require('./routes/route_assassins:id');
 const contract_add = require('./routes/route_contract_add');
 const contract_submit = require('./routes/route_contract_submit');
 
 app.use(index);
 app.use(assassins_show);
+// app.use(assassins_id);
 app.use(contract_add);
 app.use(contract_submit);
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css" charset="utf-8">
+    <title>KillBase - Edit Assassin</title>
+</head>
+<body>
+    <form method="POST" action="/assassins_all/update">
+    <% include ./partials/nav %>
+    <% for(var i=0; i<assassins.length; i++) {%>
+        
+            <div class='div_assassin'>
+                <table>
+                    <tr>
+                        <td><h3>Edit Assassin</h3></td>
+                    </tr>
+                    <tr>
+                        <td><img class="thumb" src="<%= assassins[i].assassin_photo %>"></td>
+                        <td>Name: <input type="text" name="assassin_name" value="<%= assassins[i].assassin_name %>">
+                        <br/>Contact: <input type="text" name="assassin_contact" value="<%= assassins[i].assassin_contact %>">
+                        <br/>Weapon: <input type="text" name="weapon" value="<%= assassins[i].weapon %>">
+                        <br/>Age: <input type="text" name="age" value="<%= assassins[i].age %>">
+                        <br/>Price: $<input type="text" name="price" value="<%= assassins[i].price %>">K
+                        <br/>Rating: <input type="text" name="rating" value="<%= assassins[i].rating %>">
+                        <br/>Kills: <input type="text" name="kills" value="<%= assassins[i].kills %>">
+                        <input type="hidden" name="assassin_id" value="<%= assassins[i].assassin_id %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit">SUBMIT</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    <% } %>
+    </form>
+</body>
+</html>

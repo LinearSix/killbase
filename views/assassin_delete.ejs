@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css" charset="utf-8">
+    <title>KillBase - Assassin Deleted</title>
+</head>
+<body>
+    <% include ./partials/nav %>
+    <% for(var i=0; i<assassin_row.length; i++) {%>
+        
+            <div class='div_assassin'>
+                <table>
+                    <tr>
+                        <td>Assassin Deleted</td>
+                    </tr>
+                    <!-- <tr>
+                        <td><img class="thumb" src="<%= assassins[i].assassin_photo %>"></td>
+                        <td>Name: <%= assassin_row[i].assassin_name %>
+                        <br/>Contact: <%= assassin_row[i].assassin_contact %>
+                        <br/>Weapon: <%= assassin[_rowi].weapon %>
+                        <br/>Age: <%= assassin_row[i].age %>
+                        <br/>Price: $<%= assassin_row[i].price %>K
+                        <br/>Rating: <%= assassin_row[i].rating %>
+                        <br/>Kills: <%= assassin_row[i].kills %>
+                        </td>
+                    </tr> -->
+                </table>
+            </div>
+
+    <% } %>
+</body>
+</html>
