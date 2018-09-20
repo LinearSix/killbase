@@ -74,7 +74,7 @@ router.post('/assassins_all/update', (req, res, next) => {
         .where('assassin_id', Number(req.body.assassin_id));
     })
     .then((assassins) => {
-      res.render('assassin_edit', {assassins});
+      res.render('assassin_profile', {assassins});
     })
     .catch((err) => {
       next(err);
@@ -83,7 +83,7 @@ router.post('/assassins_all/update', (req, res, next) => {
 
 // delete an assassin
 router.get('/assassins_all/delete/:id', (req, res, next) => {
-  let assassin_row;
+  let assassins;
 
   knex('assassins')
     .where('assassin_id', req.params.id)
@@ -92,15 +92,15 @@ router.get('/assassins_all/delete/:id', (req, res, next) => {
       if (!row) {
         return next();
       }
-      assassin_row = row;
+      assassins = row;
       return knex('assassins')
         .del()
         .where('assassin_id', req.params.id);
     })
     .then(() => {
-      delete assassin_row.assassin_id;
-      console.log('assassin_row is ' + assassin_row)
-      res.render('assassin_delete', {assassin_row});
+      delete assassins.assassin_id;
+      console.log('assassins is ' + assassins)
+      res.render('assassin_profile', {assassins});
     })
     .catch((err) => {
       next(err);
