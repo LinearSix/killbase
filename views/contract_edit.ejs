@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css" charset="utf-8">
+    <title>KillBase - Edit Contract</title>
+</head>
+<body>
+    <form method="POST" action="/contracts_all/update">
+    <% include ./partials/nav %>
+    <% for(var i=0; i<contracts.length; i++) {%>
+        
+            <div class='div_assassin'>
+                <table>
+                    <tr>
+                        <td colspan="2"><h3>Edit Contract</h3></td>
+                    </tr>
+                    <tr>
+                        <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
+                        <td>Contract ID: <%= contracts[i].assassin_name %>
+                        <br/>Target: <input type="text" name="target_name" value="<%= contracts[i].target_name %>">
+                        <br/>Security Level: <input type="text" name="security" value="<%= contracts[i].security %>">
+                        <br/>Location: <input type="text" name="location" value="<%= contracts[i].location %>">
+                        <br/>Budget: $<input type="text" name="budget" value="<%= Math.round(contracts[i].budget) %>">K
+                        <br/>Client: <%= contracts[i].client_name %>
+                        <br/>Completed: <input type="text" name="completed" value="<%= contracts[i].completed %>">
+                        <br/>Completed By: <input type="text" name="completed_by" value="<%= contracts[i].completed_by %>">
+                        <input type="hidden" name="contract_id" value="<%= contracts[i].contract_id %>">
+                        <input type="hidden" name="target_id" value="<%= contracts[i].target_id %>">
+                        <input type="hidden" name="client_id" value="<%= contracts[i].client_id %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">SUBMIT</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    <% } %>
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+    <title>KillBase - Contracts</title>
+</head>
+<body>
+    <% include ./partials/nav %>
+    <% for(var i=0; i<contracts.length; i++) {%>
+        
+            <div class='div_assassin'>
+                <table>
+                    <tr>
+                        <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
+                        <td>Contract ID: <%= contracts[i].contract_id %>
+                        <br/>Target: <%= contracts[i].target_name %>
+                        <br/>Security: <%= contracts[i].security %>
+                        <br/>Budget: $<%= Math.round(contracts[i].budget) %>K
+                        <br/>Location: <%= contracts[i].location %>
+                        <br/>Client: <%= contracts[i].client_name %>
+                        <br/>Completed: <%= contracts[i].completed %>
+                        <br/>Completed By: <%= contracts[i].completed_by %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <!-- <a href="contracts_all/<%= contracts[i].assassin_id %>">Profile</a> -->
+                            <a href="contracts_all/edit/<%= contracts[i].contract_id %>">Edit</a>
+                            <a href="contracts_all/delete/<%= contracts[i].contract_id %>">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    <% } %>
+</body>
+</html>

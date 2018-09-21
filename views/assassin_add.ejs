@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+    <title>KillBase - Add New Contract</title>
+</head>
+<body>
+    <% include ./partials/nav %>
+    <form name="contract_add" method="POST" action="/assassin_submit">
+        <table>
+            <tr>
+                <td class="table_title" colspan="9"><h3>Add a New Assassin...</h3>
+            </tr>
+            <tr>
+                <td><strong>Assassin Name</strong></a></td>
+                <td><strong>Code Name</strong></a></td>
+                <td><strong>Assassin Photo (URL)</strong></td>
+                <td><strong>Contact Email</strong></td>
+                <td><strong>Preferred Weapon</strong></a></td>
+                <td><strong>Age</strong></a></td>
+                <td><strong>Price (in $K)</strong></a></td>
+                <td><strong>Rating</strong></a></td>
+                <td><strong>Kills</strong></a></td>
+            </tr>
+            <tr>
+                <td><input name="assassin_name"></td>
+                <td><input name="code_name"></td>
+                <td><input name="assassin_photo"></td>
+                <td><input name="assassin_contact"></td>
+                <td><input name="weapon"></td>
+                <td><input name="age"></td>
+                <td><input name="price"></td>
+                <td><input name="rating"></td>
+                <td><input name="kills"></td>
+            </tr>
+            <tr>
+                <td align="center" class="table_title" colspan="9"><button type="submit">SUBMIT</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
