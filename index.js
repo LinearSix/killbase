@@ -30,15 +30,15 @@ const index = require('./routes');
 const assassins_show = require('./routes/route_assassins');
 const contracts_show = require('./routes/route_contracts');
 
-const contract_add = require('./routes/route_contract_add');
-const contract_submit = require('./routes/route_contract_submit');
+// const contract_add = require('./routes/route_contract_add');
+// const contract_submit = require('./routes/route_contract_submit');
 
 app.use(index);
 app.use(assassins_show);
 app.use(contracts_show);
 
-app.use(contract_add);
-app.use(contract_submit);
+// app.use(contract_add);
+// app.use(contract_submit);
 
 app.get('/', function(req, res){ res.redirect(index)});
 

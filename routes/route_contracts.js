@@ -19,7 +19,7 @@ router.get('/contracts_all', (req, res, next) => {
     });
 });
 
-// render selected assassin profile
+// render selected contract
 router.get('/contracts_all/:id', (req, res, next) => {
   console.log(req.params.id)
   knex('contracts')
@@ -30,6 +30,19 @@ router.get('/contracts_all/:id', (req, res, next) => {
         return next();
       }
       res.render('contract_profile', {contracts});
+    })
+    .catch((err) => {
+      next(err);
+    });
+}); 
+
+// get assassins and code names for select options
+router.get('/contract_add', (req, res, next) => {
+  knex('clients')
+    .orderBy('client_name')
+    .then((clients) => {
+      // res.send(assassins);
+      res.render('contract_add', {clients})
     })
     .catch((err) => {
       next(err);
@@ -53,6 +66,46 @@ router.get('/contracts_all/edit/:id', (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+router.post('/contract_submit', (req, res, next) => {
+  let target_id = null;
+  knex.transaction(function(t) {
+      return knex('targets')
+      .transacting(t)
+      .returning('target_id')
+      .insert({
+          target_name: req.body.target_name, 
+          location: req.body.location, 
+          photo: req.body.photo, 
+          security: req.body.security 
+      }).then(function(resp) {
+          console.log('res' + resp);
+          return knex('contracts')
+          .transacting(t)
+          .insert({
+              contract_client_id: req.body.contract_client_id, 
+              contract_target_id: Number(resp), 
+              budget: req.body.budget, 
+              completed: false, 
+              completed_by: null 
+          })
+      })
+      .then(t.commit)
+      .then((targets) => {
+          res.send(targets);
+      })
+      .catch(function(err) {
+          t.rollback();
+          throw err;
+      })
+      .then(function() {
+      console.log('it worked');
+      })
+      .catch(function(err) {
+      console.log('it failed');
+      })
+  })
 });
 
 // update contract record and render confirmation page

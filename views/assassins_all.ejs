@@ -28,7 +28,24 @@
                         <td colspan="2">
                             <a href="assassins_all/<%= assassins[i].assassin_id %>">Profile</a>
                             <a href="assassins_all/edit/<%= assassins[i].assassin_id %>">Edit</a>
-                            <a href="assassins_all/delete/<%= assassins[i].assassin_id %>">Delete</a>
+                            <a href="assassins_all/delete/<%= assassins[i].assassin_id %>"><button onclick="deleteConfirm()">Delete</button></a>
+                            <script>
+                            function deleteConfirm() {
+                                confirm("Are you sure you want to delete this assassin?");
+                            }
+                            </script>
+                            <!-- <script>
+                            function myFunction() {
+                                var txt;
+                                var r = confirm("Press a button!");
+                                if (r == true) {
+                                    txt = "You pressed OK!";
+                                } else {
+                                    txt = "You pressed Cancel!";
+                                }
+                                document.getElementById("demo").innerHTML = txt;
+                            }
+                            </script> -->
                         </td>
                     </tr>
                 </table>

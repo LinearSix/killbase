@@ -136,9 +136,10 @@ router.post('/assassins_all/update', (req, res, next) => {
 let assassin_delete_name;
 // delete an assassin and redirect to confirmation page
 router.get('/assassins_all/delete/:id', (req, res, next) => {
-  let assassin_row;
 
-  knex('assassins')
+    let assassin_row;
+    
+    knex('assassins')
     .where('assassin_id', req.params.id)
     .first()
     .then((row) => {
@@ -149,16 +150,27 @@ router.get('/assassins_all/delete/:id', (req, res, next) => {
       assassin_delete_name = row.assassin_name;
       console.log('assassin_row' + assassin_row) // assassin_delete_name = assassins.assassin_name;
       return knex('assassins')
-        .del()
-        .where('assassin_id', req.params.id);
+      .del()
+      .where('assassin_id', req.params.id);
     })
     .then(() => {
       delete assassin_row.assassin_id;
-      res.redirect('/assassins_all/assassin_deleted/' + assassin_delete_name);
+      res.redirect('/assassins_all');
     })
     .catch((err) => {
       next(err);
     });
+
+    res.redirect('/assassins_all');
+
 });
+
+// // delete an assassin and redirect to confirmation page
+// router.get('/assassins_all/assassin_deleted/:id', (req, res, next) => {
+
+//   let deleted_assassin = req.params.id;
+//   res.render('/assassins_all/assassin_deleted', {deleted_assassin});
+
+// });
 
 module.exports = router;
