@@ -7,7 +7,6 @@ const knex = require('../db/knex');
 // render all contracts
 router.get('/contracts_all', (req, res, next) => {
   knex.from('contracts')
-    .innerJoin('targets', 'contract_target_id', 'target_id')
     .innerJoin('clients', 'contract_client_id', 'client_id')
     .orderBy('contract_id', 'asc')
     .then((contracts) => {

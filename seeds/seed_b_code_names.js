@@ -32,7 +32,11 @@ exports.seed = (knex) => {
             },
             {
               "code_assassin": 8,
-              "code_name": "Nikita, La Femme Nikita"
+              "code_name": "Nikita"
+            },
+            {
+              "code_assassin": 8,
+              "code_name": "La Femme Nikita"
             },
             {
               "code_assassin": 9,
