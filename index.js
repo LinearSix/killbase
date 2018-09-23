@@ -16,6 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Set the folder for css & java scripts
 app.use(express.static('./css'))
+app.use(express.static('./img'))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Set the view engine to ejs
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const index = require('./routes');
 const assassins_show = require('./routes/route_assassins');
+const clients_show = require('./routes/route_clients');
 const contracts_show = require('./routes/route_contracts');
 
 // const contract_add = require('./routes/route_contract_add');
@@ -35,6 +37,7 @@ const contracts_show = require('./routes/route_contracts');
 
 app.use(index);
 app.use(assassins_show);
+app.use(clients_show);
 app.use(contracts_show);
 
 // app.use(contract_add);

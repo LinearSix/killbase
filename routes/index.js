@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
   knex('assassins')
     .orderBy('kills', 'desc')
     .then((assassins) => {
-      // res.send(assassins);
       res.render('index', {assassins})
     })
     .catch((err) => {

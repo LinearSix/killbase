@@ -56,7 +56,7 @@ router.post('/assassin_submit', (req, res, next) => {
           rating: req.body.rating, 
           kills: req.body.kills
       })
-      .then(function(resp) {
+      .then((resp) => {
           assassin_insert_id = Number(resp);
           // console.log('res' + resp);
           return knex('code_names')
@@ -68,24 +68,24 @@ router.post('/assassin_submit', (req, res, next) => {
           })
       })
       .then(t.commit)
-      .then((res_id) => {
+      .then(() => {
           // console.log(assassin_id);
           res.redirect('assassins_all/' + assassin_insert_id);
       })
-      .catch(function(err) {
+      .catch((err) => {
           t.rollback();
           throw err;
       })
-      .then(function() {
+      .then(() => {
       console.log('it worked');
       })
-      .catch(function(err) {
+      .catch((err) => {
       console.log('it failed', err);
       })
   })
 });
 
-// render update page for selected assassin
+// render edit page for selected assassin
 router.get('/assassins_all/edit/:id', (req, res, next) => {
   console.log(req.params.id)
   knex('assassins')
