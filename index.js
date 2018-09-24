@@ -4,9 +4,10 @@ const app = express();
 const PORT = process.env.PORT || 1666;
 const bodyParser = require('body-parser');
 const knex = require('./db/knex');
+const methodOverride = require('method-override')
 const morgan = require('morgan');
 
-console.log(knex);
+// console.log(knex);
 
 const logger = require('morgan');
 // const knex = require('knex');
@@ -14,9 +15,11 @@ const logger = require('morgan');
 // Set the default views directory to pages folder
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(methodOverride('X-HTTP-Method-Override'))
+
 // Set the folder for css & java scripts
 app.use(express.static('./css'))
-app.use(express.static('./img'))
+// app.use(express.static('./img'))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
 // Set the view engine to ejs
@@ -43,7 +46,7 @@ app.use(contracts_show);
 // app.use(contract_add);
 // app.use(contract_submit);
 
-app.get('/', function(req, res){ res.redirect(index)});
+app.get('/', function(req, res){ res.redirect('index')});
 
 // ################ FROM HEROKU INSTRUCTIONS ##################
 app.get('/db', async (req, res) => {

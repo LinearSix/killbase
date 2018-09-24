@@ -202,7 +202,7 @@ router.post('/assassins_all/update', (req, res, next) => {
         }, '*')
         .where('assassin_id', Number(req.body.assassin_id));
     })
-    .then((assassins) => {
+    .then(() => {
       res.redirect('/assassins_all/' + assassin_update_id);
     })
     .catch((err) => {
