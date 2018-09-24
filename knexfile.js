@@ -40,10 +40,10 @@ module.exports = {
   // production: {
   //   client: 'postgresql',
   //   connection: {
-  //     database: 'postgres://bhllimujmwwfug:48add9a09a226b25428486cc93eab6395232bfc4d343e66e1d9bda884f4730a3@ec2-54-243-147-162.compute-1.amazonaws.com:5432/de4kg3q8vdvcbb5',
+  //     database: 'dd340qs8d2v9e6',
   //     // port:     5432,
-  //     user:     '',
-  //     password: ''
+  //     user:     'njngxvbrucgouw',
+  //     password: '29fdbbe8ea512198febc1f38c754a8557982b905a8512067fa2a446cd04915ce'
   //   },
   //   pool: {
   //     min: 2,
