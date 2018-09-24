@@ -9,8 +9,47 @@
 </head>
 <body>
     <% include ./partials/nav %>
-    <% for(var i=0; i<contracts.length; i++) {%>
-        
+        <table>
+                <tr>
+                    <form action="/contracts_budget" method="GET">
+                        <td>Filter by Budget
+                            <br/>
+                            <select name="budget">
+                                <option value="0">$0 and over</option>
+                                <option value="10">$10K and over</option>
+                                <option value="20">$20K and over</option>
+                                <option value="30">$30K and over</option>
+                                <option value="40">$40K and over</option>
+                                <option value="50">$50K and over</option>
+                                <option value="60">$60K and over</option>
+                                <option value="70">$70K and over</option>
+                                <option value="80">$80K and over</option>
+                                <option value="90">$90K and over</option>
+                                <option value="100">$100K and over</option>
+                            </select>
+                            <br/>
+                            <button type="submit" class="nav">Filter by Budget</button></td>
+                    </form>
+                    <form action="/contracts_security" method="GET">
+                        <td>Filter by Security
+                            <br/>
+                            <select name="security">
+                                <option value="1">Over 1.0</option>
+                                <option value="2">Over 2.0</option>
+                                <option value="3">Over 3.0</option>
+                                <option value="4">Over 4.0</option>
+                                <option value="5">Over 5.0</option>
+                                <option value="6">Over 6.0</option>
+                                <option value="7">Over 7.0</option>
+                                <option value="8">Over 8.0</option>
+                                <option value="9">Over 9.0</option>
+                            </select>
+                            <br/>
+                            <button type="submit" class="nav">Filter by Security</button></td>
+                    </form>
+                </tr>
+            </table>
+        <% for(var i=0; i<contracts.length; i++) {%>
             <div class='div_assassin'>
                 <table>
                     <tr>

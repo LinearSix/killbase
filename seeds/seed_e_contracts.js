@@ -10,7 +10,7 @@ exports.seed = (knex) => {
               "contract_client_id": 1,
               "budget": 40,
               "completed": "FALSE",
-              "completed_by": null
+              "completed_by": 1
             },
             {
               "target_name": "The Jaguar",
@@ -20,7 +20,7 @@ exports.seed = (knex) => {
               "contract_client_id": 2,
               "budget": 70,
               "completed": "FALSE",
-              "completed_by": null
+              "completed_by": 1
             },
             {
               "target_name": "Norman Stansfield",
@@ -30,7 +30,7 @@ exports.seed = (knex) => {
               "contract_client_id": 3,
               "budget": 35,
               "completed": "FALSE",
-              "completed_by": null
+              "completed_by": 1
             },
             {
               "target_name": "Santino D'Antonio",
@@ -40,7 +40,7 @@ exports.seed = (knex) => {
               "contract_client_id": 4,
               "budget": 25,
               "completed": "FALSE",
-              "completed_by": null
+              "completed_by": 1
             },
             {
               "target_name": "Sonny Valerio",
@@ -50,7 +50,7 @@ exports.seed = (knex) => {
               "contract_client_id": 5,
               "budget": 10,
               "completed": "FALSE",
-              "completed_by": null
+              "completed_by": 1
             }
           ]);
     });

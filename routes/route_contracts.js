@@ -8,7 +8,7 @@ const knex = require('../db/knex');
 router.get('/contracts_all', (req, res, next) => {
   knex.from('contracts')
     .innerJoin('clients', 'contract_client_id', 'client_id')
-    // .innerJoin('assassins', 'completed_by', 'assassin_id')
+    .innerJoin('assassins', 'completed_by', 'assassin_id')
     .orderBy('contract_id', 'asc')
     .then((contracts) => {
       // res.send(contracts);
@@ -25,6 +25,7 @@ router.get('/contracts_all/:id', (req, res, next) => {
   knex('contracts')
     .where('contract_id', req.params.id)
     .innerJoin('clients', 'contract_client_id', 'client_id')
+    .innerJoin('assassins', 'completed_by', 'assassin_id')
     .then((contracts) => {
       if (!contracts) {
         return next();
@@ -35,6 +36,46 @@ router.get('/contracts_all/:id', (req, res, next) => {
       next(err);
     });
 }); 
+
+// render all contracts filtered by budget
+router.get('/contracts_budget', (req, res, next) => {
+  let budget = 10000;
+  if (req.query.budget) {
+    budget = req.query.budget;
+  }
+  knex('contracts')
+    .where('budget', '>=', budget)
+    .innerJoin('clients', 'contract_client_id', 'client_id')
+    .innerJoin('assassins', 'completed_by', 'assassin_id')
+    .orderBy('budget', 'asc')
+    .then((contracts) => {
+      // res.send(contracts);
+      res.render('contracts_all', {contracts});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// render all contracts filtered by security
+router.get('/contracts_security', (req, res, next) => {
+  let security = 10000;
+  if (req.query.security) {
+    security = req.query.security;
+  }
+  knex('contracts')
+    .where('security', '>=', security)
+    .innerJoin('clients', 'contract_client_id', 'client_id')
+    .innerJoin('assassins', 'completed_by', 'assassin_id')
+    .orderBy('security', 'asc')
+    .then((contracts) => {
+      // res.send(contracts);
+      res.render('contracts_all', {contracts});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 // get client names for select options
 router.get('/contract_add', (req, res, next) => {
