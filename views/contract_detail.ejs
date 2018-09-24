@@ -11,7 +11,7 @@
     <% include ./partials/nav %>
     <% for(var i=0; i<contracts.length; i++) {%>
         
-            <div class='div_assassin'>
+            <div class='div_large'>
                     <table>
                         <tr>
                             <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
@@ -21,8 +21,9 @@
                             <br/>Budget: $<%= Math.round(contracts[i].budget) %>K
                             <br/>Location: <%= contracts[i].location %>
                             <br/>Client: <%= contracts[i].client_name %>
+                            <br/>Assigned to: <%= assassins[i].assassin_name %> (<%= contracts[i].code_name %>)
                             <br/>Completed: <%= contracts[i].completed %>
-                            <br/>Completed By: <%= contracts[i].assassin_name %>
+                            <br/>Completed By: <%= contracts[i].assassin_name %> (<%= contracts[i].code_name %>)
                             </td>
                         </tr>
                         <tr>

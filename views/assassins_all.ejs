@@ -79,7 +79,7 @@
     </table>
     <% for(var i=0; i<assassins.length; i++) {%>
         
-            <div class='div_assassin'>
+            <div class='div_thumb'>
                 <table>
                     <tr>
                         <td><img class="thumb" src="<%= assassins[i].assassin_photo %>"></td>
@@ -94,8 +94,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a href="assassins_all/<%= assassins[i].assassin_id %>">Profile</a>
-                            <a href="assassins_all/edit/<%= assassins[i].assassin_id %>">Edit</a>
+                            <a href="assassins_all/<%= assassins[i].assassin_id %>"><button>Profile</button></a>
+                            <a href="assassins_all/edit/<%= assassins[i].assassin_id %>"><button>Edit</button></a>
                             <a href="assassins_all/delete/<%= assassins[i].assassin_id %>"><button onclick="deleteConfirm()">Delete</button></a>
                             <script>
                             function deleteConfirm() {

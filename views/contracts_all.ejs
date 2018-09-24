@@ -50,7 +50,7 @@
                 </tr>
             </table>
         <% for(var i=0; i<contracts.length; i++) {%>
-            <div class='div_assassin'>
+            <div class='div_thumb'>
                 <table>
                     <tr>
                         <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
@@ -66,9 +66,14 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a href="contracts_all/<%= contracts[i].contract_id %>">Details</a>
-                            <a href="contracts_all/edit/<%= contracts[i].contract_id %>">Edit</a>
-                            <a href="contracts_all/delete/<%= contracts[i].contract_id %>">Delete</a>
+                            <a href="contracts_all/<%= contracts[i].contract_id %>"><button>Details</button></a>
+                            <a href="contracts_all/edit/<%= contracts[i].contract_id %>"><button>Edit</button></a>
+                            <a href="contracts_all/delete/<%= contracts[i].contract_id %>"><button onclick="deleteConfirm()">Delete</button></a>
+                            <script>
+                            function deleteConfirm() {
+                                confirm("Are you sure you want to delete this contracts?");
+                            }
+                            </script>
                         </td>
                     </tr>
                 </table>
