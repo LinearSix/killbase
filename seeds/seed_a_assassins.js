@@ -3,6 +3,16 @@ exports.seed = (knex) => {
       .then(() => {
           return knex('assassins').insert([
             {
+              "assassin_photo": "",
+              "assassin_name": "none",
+              "assassin_contact": "",
+              "weapon": "",
+              "age": 0,
+              "price": 0,
+              "rating": 0,
+              "kills": 0
+            },
+            {
               "assassin_photo": "http://image.cdnllnwnl.xosnetwork.com/fls/31000/old_site/images/gilford-duggan-1939.jpg",
               "assassin_name": "Alexander Duggan",
               "assassin_contact": "jackal@gmail.com",

@@ -5,10 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css" charset="utf-8">
-    <title>KillBase</title>
+    <title>KillBase - Meet the Assassins</title>
 </head>
 <body>
     <% include ./partials/nav %>
+    <table>
+        <tr>
+            <form action="/assassins_kills" method="GET">
+                <td>Filter by Kills
+                    <br/>
+                    <select name="kills">
+                        <option value="0">0-10</option>
+                        <option value="10">10 and up</option>
+                        <option value="30">20 and up</option>
+                        <option value="40">30 and up</option>
+                        <option value="50">40 and up</option>
+                        <option value="60">50 and up</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="nav">Filter by Kills</button></td>
+            </form>
+            <form action="/assassins_age" method="GET">
+                <td>Filter by Age
+                    <br/>
+                    <select name="age">
+                        <option value="0">0-20</option>
+                        <option value="20">20 and over</option>
+                        <option value="30">30 and over</option>
+                        <option value="40">40 and over</option>
+                        <option value="50">50 and over</option>
+                        <option value="60">60 and over</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="nav">Filter by Age</button></td>
+            </form>
+            <form action="/assassins_price" method="GET">
+                <td>Filter by Price
+                    <br/>
+                    <select name="price">
+                        <option value="0">$0 and over</option>
+                        <option value="10">$10K and over</option>
+                        <option value="20">$20K and over</option>
+                        <option value="30">$30K and over</option>
+                        <option value="40">$40K and over</option>
+                        <option value="50">$50K and over</option>
+                        <option value="60">$60K and over</option>
+                        <option value="70">$70K and over</option>
+                        <option value="80">$80K and over</option>
+                        <option value="90">$90K and over</option>
+                        <option value="100">$100K and over</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="nav">Filter by Price</button></td>
+            </form>
+            <form action="/assassins_rating" method="GET">
+                <td>Filter by Rating
+                    <br/>
+                    <select name="rating">
+                        <option value="1">Over 1.0</option>
+                        <option value="2">Over 2.0</option>
+                        <option value="3">Over 3.0</option>
+                        <option value="4">Over 4.0</option>
+                        <option value="5">Over 5.0</option>
+                        <option value="6">Over 6.0</option>
+                        <option value="7">Over 7.0</option>
+                        <option value="8">Over 8.0</option>
+                        <option value="9">Over 9.0</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="nav">Filter by Rating</button></td>
+            </form>
+        </tr>
+    </table>
     <% for(var i=0; i<assassins.length; i++) {%>
         
             <div class='div_assassin'>

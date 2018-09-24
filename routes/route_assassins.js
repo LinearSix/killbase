@@ -4,10 +4,87 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
-// render all assassins
+// render all assassins by kills (default)
 router.get('/assassins_all', (req, res, next) => {
   knex('assassins')
+    .whereNot('assassin_id', 1)
     .orderBy('kills', 'desc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// render all assassins by kills
+router.get('/assassins_kills', (req, res, next) => {
+  let kills = 10000;
+  if (req.query.kills) {
+    kills = req.query.kills;
+  }
+  knex('assassins')
+    .whereNot('assassin_id', 1)
+    .where('kills', '>=', kills)
+    .orderBy('kills', 'asc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// render all assassins by age
+router.get('/assassins_age', (req, res, next) => {
+  let age = 10000;
+  if (req.query.age) {
+    age = req.query.age;
+  }
+  knex('assassins')
+    .whereNot('assassin_id', 1)
+    .where('age', '>=', age)
+    .orderBy('age', 'asc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// render all assassins by price
+router.get('/assassins_price', (req, res, next) => {
+  let price = 10000;
+  if (req.query.price) {
+    price = req.query.price;
+  }
+  knex('assassins')
+    .whereNot('assassin_id', 1)
+    .where('price', '>=', price)
+    .orderBy('price', 'asc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// render all assassins by rating
+router.get('/assassins_rating', (req, res, next) => {
+  let rating = 10000;
+  if (req.query.rating) {
+    rating = req.query.rating;
+  }
+  knex('assassins')
+    .whereNot('assassin_id', 1)
+    .where('rating', '>=', rating)
+    .orderBy('rating', 'asc')
     .then((assassins) => {
       // res.send(assassins);
       res.render('assassins_all', {assassins});

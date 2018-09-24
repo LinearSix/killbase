@@ -13,7 +13,7 @@
         <table>
             <tr>
                 <td class="table_title" colspan="6"><h3>Add New Contract...</h3>
-                <i>(Snake Plissken, New York, (find a photo), security 5, budget 35, Client is Marcellus Wallace.)</i></td>
+                </td>
             </tr>
             <tr>
                 <td><strong>Client</strong></a></td>
@@ -25,12 +25,17 @@
             </tr>
             <tr>
                 <td>
-                    <a href="client_add"><button>New Client</button></a>
+                    <a href="/client_add">New Client</a>
                     <select name="contract_client_id">
-                        <option value="" selected disabled hidden>Select a Client</option>
-                        <option><%= new_client %></option>
                         <% for(var j=0; j<clients.length; j++) {%>
-                        <option value="<%= clients[j].client_id %>"><%= clients[j].client_name %></option>
+                            <% if (new_client === "") { %>
+                                <option value="" selected disabled hidden>Select a Client</option>
+                            <% } %>
+                            <% if (clients[j].client_id === new_client) { %>
+                                <option selected value="<%= clients[j].client_id %>"><%= clients[j].client_name %></option>
+                            <% } else { %>
+                                <option value="<%= clients[j].client_id %>"><%= clients[j].client_name %></option>
+                            <% } %>
                         <% } %>
                     </select>
                 </td>

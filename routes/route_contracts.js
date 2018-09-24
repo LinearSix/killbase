@@ -8,6 +8,7 @@ const knex = require('../db/knex');
 router.get('/contracts_all', (req, res, next) => {
   knex.from('contracts')
     .innerJoin('clients', 'contract_client_id', 'client_id')
+    // .innerJoin('assassins', 'completed_by', 'assassin_id')
     .orderBy('contract_id', 'asc')
     .then((contracts) => {
       // res.send(contracts);
@@ -23,7 +24,6 @@ router.get('/contracts_all/:id', (req, res, next) => {
   console.log(req.params.id)
   knex('contracts')
     .where('contract_id', req.params.id)
-    .innerJoin('targets', 'contract_target_id', 'target_id')
     .innerJoin('clients', 'contract_client_id', 'client_id')
     .then((contracts) => {
       if (!contracts) {
@@ -64,137 +64,97 @@ router.get('/contract_add/:id', (req, res, next) => {
     });
 });
 
-
-// router.get('/contract_add/:id', (req, res, next) => {
-//   knex("clients")
-//     .where('client_id', req.params.id)
-//     .then((ret) => {
-//       new_client = ret
-//       return knex('clients')
-//       .whereNot('client_id', req.params.id)
-//   }).then((clients) => {
-//     res.redirect('contract_add',{
-//       new_client: new_client,
-//       clients: clients
-//     })
-//   })
-// })
-
-// render update page for selected contract
+// render update page for selected contract with assassins list
 router.get('/contracts_all/edit/:id', (req, res, next) => {
   console.log(req.params.id)
   knex.from('contracts')
-    .innerJoin('targets', 'contract_target_id', 'target_id')
     .innerJoin('clients', 'contract_client_id', 'client_id')
     .where('contract_id', req.params.id)
     // .first()
     .then((contracts) => {
       if (!contracts) {
         return next();
-      }
-      res.render('contract_edit', {contracts});
+      };
+      return knex.from('assassins')
+      .innerJoin('code_names', 'assassin_id', 'code_assassin')
+      .then((assassins) => {
+        // res.send(contracts);
+        res.render('contract_edit', { contracts, assassins });
+      })
     })
     .catch((err) => {
       next(err);
     });
 });
 
+// add a new contract
 let contract_insert_id;
 router.post('/contract_submit', (req, res, next) => {
   knex.transaction(function(t) {
-    return knex('targets')
-    .transacting(t)
-    .returning('target_id')
-    .insert({
-        target_name: req.body.target_name, 
-        location: req.body.location, 
-        target_photo: req.body.photo, 
-        security: req.body.security 
-    })
-    .then(function(resp) {
-        return knex('contracts')
-        .transacting(t)
-        .returning('contract_id')
-        .insert({
-            contract_client_id: req.body.contract_client_id, 
-            contract_target_id: Number(resp), 
-            budget: req.body.budget, 
-            completed: false, 
-            completed_by: null 
-        })
-    })
-    .then((contract_id) => {
-      contract_insert_id = Number(contract_id)
-    })
-    .then(t.commit)
-    .then(() => {
-      console.log('id is ' + contract_insert_id)
-      // contract_insert_id = 
-      res.redirect('contracts_all/' + contract_insert_id);
-    })
-    .catch(function(err) {
-        t.rollback();
-        throw err;
-    })
-    .then(function() {
-    console.log('it worked');
-    })
-    .catch(function(err) {
-    console.log('it failed');
-    })
+      return knex('contracts')
+      .transacting(t)
+      .returning('contract_id')
+      .insert({
+          target_name: req.body.target_name, 
+          location: req.body.location, 
+          target_photo: req.body.target_photo, 
+          security: req.body.security, 
+          contract_client_id: req.body.contract_client_id, 
+          budget: req.body.budget 
+          // completed: false, 
+          // completed_by: null
+      })
+      .then((resp) => {
+          contract_insert_id = Number(resp);
+      })
+      .then(t.commit)
+      .then(() => {
+          // console.log(assassin_id);
+          res.redirect('contracts_all/' + contract_insert_id);
+      })
+      .catch((err) => {
+          t.rollback();
+          throw err;
+      })
+      .then(() => {
+      console.log('it worked');
+      })
+      .catch((err) => {
+      console.log('it failed', err);
+      })
   })
 });
 
 // update contract record and render confirmation page
 let contract_update_id;
 router.post('/contracts_all/update', (req, res, next) => {
-  contract_update_id = req.body.contract_id;
-  knex.transaction(function(t) {
-    return knex('targets')
-    .transacting(t)
-    .where('target_id', Number(req.body.contract_target_id))
-    // .first()
-    // .returning('target_id')
-    .update({
-        target_name: req.body.target_name, 
-        location: req.body.location, 
-        // photo: req.body.photo, 
-        security: req.body.security 
+  contract_update_id = Number(req.body.contract_id);
+  knex('contracts')
+    .where('contract_id', Number(req.body.contract_id))
+    .first()
+    .then((contracts) => {
+      if (!contracts) {
+        return next;
+      };
+      return knex('contracts')
+        .update({ 
+          target_name: req.body.target_name, 
+          location: req.body.location, 
+          target_photo: req.body.target_photo, 
+          security: req.body.security, 
+          contract_client_id: req.body.contract_client_id, 
+          budget: req.body.budget, 
+          completed: req.body.completed, 
+          completed_by: req.body.completed_by
+        }, '*')
+        .where('contract_id', Number(req.body.contract_id));
     })
-    .then((resp) => {
-        // console.log('contract_id: ' + req.body.contract_id);
-        // console.log('contract_update_id: ' + contract_update_id);
-        return knex('contracts')
-        .transacting(t)
-        // .returning('contract_id')
-        .where('contract_id', req.body.contract_id)
-        .update({
-            contract_client_id: req.body.contract_client_id, 
-            contract_target_id: req.body.contract_target_id,
-            budget: req.body.budget, 
-            completed: false, //req.body.completed, 
-            completed_by: req.body.completed_by
-        })
-    })
-    .then((x) => {
-      console.log('contract_id: ' + req.body.contract_id);
-      console.log('contract_update_id: ' + contract_update_id);
-    })
-    .then(t.commit)
-    .then(() => {
-      res.redirect('contracts_all/' + contract_update_id);
+    .then((assassins) => {
+      res.redirect('/contracts_all/' + contract_update_id);
     })
     .catch((err) => {
-      t.rollback();
-      throw err;
-    })
-    .then(() => {
-    console.log('it worked');
-    })
-    .catch((err) => {
-    console.log('it failed');
-    })
-  })
+      next(err);
+    });
 });
 
 // delete a contract

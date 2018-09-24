@@ -12,7 +12,7 @@ exports.up = function(knex) {
         // table.foreign('contract_target_id').onDelete('CASCADE').references('target_id').inTable('targets');
         table.decimal('budget', 5).notNullable().defaultTo(0);
         table.boolean('completed').notNullable().defaultTo(false);
-        table.integer('completed_by').defaultTo(null);
+        table.integer('completed_by').defaultTo(1);
         table.foreign('completed_by').onDelete('CASCADE').references('assassin_id').inTable('assassins');
     })
 };

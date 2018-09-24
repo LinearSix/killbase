@@ -10,7 +10,6 @@
 <body>
     <form method="POST" action="/contracts_all/update">
     <% include ./partials/nav %>
-    <% for(var i=0; i<contracts.length; i++) {%>
         
             <div class='div_assassin'>
                 <table>
@@ -18,18 +17,23 @@
                         <td colspan="2"><h3>Edit Contract</h3></td>
                     </tr>
                     <tr>
-                        <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
-                        <td>Contract ID: <%= contracts[i].assassin_name %>
-                        <br/>Target: <input type="text" name="target_name" value="<%= contracts[i].target_name %>">
-                        <br/>Security Level: <input type="text" name="security" value="<%= contracts[i].security %>">
-                        <br/>Location: <input type="text" name="location" value="<%= contracts[i].location %>">
-                        <br/>Budget: $<input type="text" name="budget" value="<%= Math.round(contracts[i].budget) %>">K
-                        <br/>Client: <%= contracts[i].client_name %>
-                        <br/>Completed: <input type="text" name="completed" value="<%= contracts[i].completed %>">
-                        <br/>Completed By: <input type="text" name="completed_by" value="<%= contracts[i].completed_by %>">
-                        <input type="hidden" name="contract_id" value="<%= contracts[i].contract_id %>">
-                        <input type="hidden" name="contract_target_id" value="<%= contracts[i].contract_target_id %>">
-                        <input type="hidden" name="contract_client_id" value="<%= contracts[i].contract_client_id %>">
+                        <td><img class="thumb" src="<%= contracts[0].target_photo %>"></td>
+                        <td>Contract ID: <%= contracts[0].assassin_name %>
+                        <br/>Target: <input type="text" name="target_name" value="<%= contracts[0].target_name %>">
+                        <br/>Security Level: <input type="text" name="security" value="<%= contracts[0].security %>">
+                        <br/>Location: <input type="text" name="location" value="<%= contracts[0].location %>">
+                        <br/>Budget: $<input type="text" name="budget" value="<%= Math.round(contracts[0].budget) %>">K
+                        <br/>Client: <%= contracts[0].client_name %>
+                        <br/>Completed: <input type="text" name="completed" value="<%= contracts[0].completed %>">
+                        <br/><select name="completed_by">
+                                <option value="" selected disabled hidden>Job completed by...</option>
+                            <% for(let i=0; i<assassins.length; i++) { %>
+                                <option value="<%= assassins[i].assassin_id %>"><%= assassins[i].assassin_name %> (<%= assassins[i].code_name %>)</option>
+                            <% } %>
+                        </select>
+                        <input type="hidden" name="contract_id" value="<%= contracts[0].contract_id %>">
+                        <input type="hidden" name="contract_target_id" value="<%= contracts[0].contract_target_id %>">
+                        <input type="hidden" name="contract_client_id" value="<%= contracts[0].contract_client_id %>">
                         </td>
                     </tr>
                     <tr>
@@ -40,7 +44,6 @@
                 </table>
             </div>
 
-    <% } %>
     </form>
 </body>
 </html>
