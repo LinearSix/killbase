@@ -35,32 +35,26 @@ const assassins_show = require('./routes/route_assassins');
 const clients_show = require('./routes/route_clients');
 const contracts_show = require('./routes/route_contracts');
 
-// const contract_add = require('./routes/route_contract_add');
-// const contract_submit = require('./routes/route_contract_submit');
-
 app.use(index);
 app.use(assassins_show);
 app.use(clients_show);
 app.use(contracts_show);
 
-// app.use(contract_add);
-// app.use(contract_submit);
-
 app.get('/', function(req, res){ res.redirect('index')});
 
 // ################ FROM HEROKU INSTRUCTIONS ##################
-app.get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect()
-      const result = await client.query('SELECT * FROM test_table');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
+// app.get('/db', async (req, res) => {
+//     try {
+//       const client = await pool.connect()
+//       const result = await client.query('SELECT * FROM test_table');
+//       const results = { 'results': (result) ? result.rows : null};
+//       res.render('pages/db', results );
+//       client.release();
+//     } catch (err) {
+//       console.error(err);
+//       res.send("Error " + err);
+//     }
+//   })
 // ############################################################
 
 app.use((_req, res) => {
