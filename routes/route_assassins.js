@@ -102,6 +102,7 @@ router.get('/assassins_availability', (req, res, next) => {
   }
   if (availability === 'contracted') {
     knex('assassins')
+    .distinct('assassin_id','assassin_name', 'assassin_contact', 'weapon', 'age', 'price', 'rating', 'assassin_photo', 'kills')
     .innerJoin('ass_cont', 'ass_cont_assassin', 'assassin_id')
     .whereNot('assassin_id', 1)
     .orderBy('kills', 'desc')
