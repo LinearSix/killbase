@@ -9,32 +9,30 @@
 </head>
 <body>
     <% include ./partials/nav %>
-    <% for(var i=0; i<contracts.length; i++) {%>
-        
-            <div class='div_large'>
-                    <table>
-                        <tr>
-                            <td><img class="thumb" src="<%= contracts[i].target_photo %>"></td>
-                            <td>Contract ID: <%= contracts[i].contract_id %>
-                            <br/>Target: <%= contracts[i].target_name %>
-                            <br/>Security: <%= contracts[i].security %>
-                            <br/>Budget: $<%= Math.round(contracts[i].budget) %>K
-                            <br/>Location: <%= contracts[i].location %>
-                            <br/>Client: <%= contracts[i].client_name %>
-                            <br/>Assigned to: <%= assassins[i].assassin_name %> (<%= assassins[i].code_name %>)
-                            <br/>Completed: <%= contracts[i].completed %>
-                            <br/>Completed By: <%= contracts[i].assassin_name %> (<%= contracts[i].code_name %>)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a href="edit/<%= contracts[i].contract_id %>">Edit</a>
-                                <a href="delete/<%= contracts[i].contract_id %>">Delete</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        
-    <% } %>
+    <div class='div_large'>
+        <table>
+            <tr>
+                <td><img class="thumb" src="<%= contracts[0].target_photo %>"></td>
+                <td><strong>Target:</strong> <%= contracts[0].target_name %>
+                <br/><strong>Security:</strong> <%= contracts[0].security %>
+                <br/><strong>Budget:</strong> $<%= Math.round(contracts[0].budget) %>K
+                <br/><strong>Location:</strong> <%= contracts[0].location %>
+                <br/><strong>Client:</strong> <%= contracts[0].client_name %>
+                <br/><strong>Assigned to:</strong> 
+                <% for(var i=0; i<assassins.length; i++) {%>
+                    <%= assassins[i].assassin_name %> (<%= assassins[i].code_name %>)<br/>
+                <% } %>
+                <br/><strong>Completed:</strong> <%= contracts[0].completed %>
+                <br/><strong>Completed By:</strong> <%= contracts[0].assassin_name %> (<%= contracts[0].code_name %>)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="edit/<%= contracts[0].contract_id %>"><button>Edit</button></a>
+                    <a href="delete/<%= contracts[0].contract_id %>"><button>Delete</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

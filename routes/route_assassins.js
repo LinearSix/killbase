@@ -94,6 +94,41 @@ router.get('/assassins_rating', (req, res, next) => {
     });
 });
 
+// render assassins by availability
+router.get('/assassins_availability', (req, res, next) => {
+  let availability;
+  if (req.query.availability) {
+    availability = req.query.availability;
+  }
+  if (availability === 'contracted') {
+    knex('assassins')
+    .innerJoin('ass_cont', 'ass_cont_assassin', 'assassin_id')
+    .whereNot('assassin_id', 1)
+    .orderBy('kills', 'desc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+  } else {
+    knex('assassins')
+      .whereNotIn('assassin_id', function() {
+      this.select('ass_cont_assassin').from('ass_cont');
+    })
+    .whereNot('assassin_id', 1)
+    .orderBy('kills', 'desc')
+    .then((assassins) => {
+      // res.send(assassins);
+      res.render('assassins_all', {assassins});
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
+});
+
 // render selected assassin profile
 router.get('/assassins_all/:id', (req, res, next) => {
   console.log(req.params.id)

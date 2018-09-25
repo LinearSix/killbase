@@ -15,7 +15,8 @@
                 <td>Filter by Kills
                     <br/>
                     <select name="kills">
-                        <option value="0">0-10</option>
+                        <option value=""></option>
+                        <option value="0">0 and up</option>
                         <option value="10">10 and up</option>
                         <option value="30">20 and up</option>
                         <option value="40">30 and up</option>
@@ -29,7 +30,8 @@
                 <td>Filter by Age
                     <br/>
                     <select name="age">
-                        <option value="0">0-20</option>
+                        <option value=""></option>
+                        <option value="10">10 and over</option>
                         <option value="20">20 and over</option>
                         <option value="30">30 and over</option>
                         <option value="40">40 and over</option>
@@ -43,6 +45,7 @@
                 <td>Filter by Price
                     <br/>
                     <select name="price">
+                        <option value=""></option>
                         <option value="0">$0 and over</option>
                         <option value="10">$10K and over</option>
                         <option value="20">$20K and over</option>
@@ -62,18 +65,30 @@
                 <td>Filter by Rating
                     <br/>
                     <select name="rating">
-                        <option value="1">Over 1.0</option>
-                        <option value="2">Over 2.0</option>
-                        <option value="3">Over 3.0</option>
-                        <option value="4">Over 4.0</option>
-                        <option value="5">Over 5.0</option>
-                        <option value="6">Over 6.0</option>
-                        <option value="7">Over 7.0</option>
-                        <option value="8">Over 8.0</option>
-                        <option value="9">Over 9.0</option>
+                        <option value=""></option>
+                        <option value="1">1.0 and over</option>
+                        <option value="2">2.0 and over</option>
+                        <option value="3">3.0 and over</option>
+                        <option value="4">4.0 and over</option>
+                        <option value="5">5.0 and over</option>
+                        <option value="6">6.0 and over</option>
+                        <option value="7">7.0 and over</option>
+                        <option value="8">8.0 and over</option>
+                        <option value="9">9.0 and over</option>
                     </select>
                     <br/>
                     <button type="submit" class="nav">Filter by Rating</button></td>
+            </form>
+            <form action="/assassins_availability" method="GET">
+                <td>Filter by Availability
+                    <br/>
+                    <select name="availability">
+                        <option value=""></option>
+                        <option value="contracted">Currently Contracted</option>
+                        <option value="not_contracted">Not Currently Contracted</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="nav">Filter by Availablity</button></td>
             </form>
         </tr>
     </table>

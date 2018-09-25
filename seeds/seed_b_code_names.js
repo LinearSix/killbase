@@ -3,6 +3,10 @@ exports.seed = (knex) => {
       .then(() => {
           return knex('code_names').insert([
             {
+              "code_assassin": 1,
+              "code_name": ""
+            },
+            {
               "code_assassin": 2,
               "code_name": "The Jackal"
             },
