@@ -20,7 +20,7 @@
                 <br/><strong>Client:</strong> <%= contracts[0].client_name %>
                 <br/><strong>Assigned to:</strong> 
                 <% for(var i=0; i<assassins.length; i++) {%>
-                    <%= assassins[i].assassin_name %> (<%= assassins[i].code_name %>)<br/>
+                    <%= assassins[i].assassin_name %> (<%= assassins[i].code_name %>), 
                 <% } %>
                 <br/><strong>Completed:</strong> <%= contracts[0].completed %>
                 <br/><strong>Completed By:</strong> <%= contracts[0].assassin_name %> (<%= contracts[0].code_name %>)

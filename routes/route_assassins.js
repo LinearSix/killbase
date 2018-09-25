@@ -137,10 +137,16 @@ router.get('/assassins_all/:id', (req, res, next) => {
     .where('assassin_id', req.params.id)
     // .first()
     .then((assassins) => {
-      if (!assassins) {
-        return next();
-      }
-      res.render('assassin_profile', {assassins});
+      return knex('code_names')
+      .where('code_assassin', req.params.id)
+      .then((code_names) => {
+        return knex('contracts')
+        .innerJoin('ass_cont', 'ass_cont_contract', 'contract_id')
+        .where('ass_cont_assassin', req.params.id)
+        .then((contracts) => {
+          res.render('assassin_profile', { assassins, code_names, contracts })
+        })
+      })
     })
     .catch((err) => {
       next(err);
@@ -205,10 +211,16 @@ router.get('/assassins_all/edit/:id', (req, res, next) => {
     .where('assassin_id', req.params.id)
     // .first()
     .then((assassins) => {
-      if (!assassins) {
-        return next();
-      }
-      res.render('assassin_edit', {assassins});
+      return knex('code_names')
+      .where('code_assassin', req.params.id)
+      .then((code_names) => {
+        return knex('contracts')
+        .innerJoin('ass_cont', 'ass_cont_contract', 'contract_id')
+        .where('ass_cont_assassin', req.params.id)
+        .then((contracts) => {
+          res.render('assassin_edit', { assassins, code_names, contracts })
+        })
+      })
     })
     .catch((err) => {
       next(err);
