@@ -11,7 +11,7 @@ router.get('/assassins_all', (req, res, next) => {
     .orderBy('kills', 'desc')
     .then((assassins) => {
       // res.send(assassins);
-      res.render('assassins_all', {assassins});
+      res.render('assassins_all', { page_function: ' - Meet the Assassins', assassins });
     })
     .catch((err) => {
       next(err);
@@ -189,7 +189,7 @@ router.post('/assassin_submit', (req, res, next) => {
       .then(t.commit)
       .then(() => {
           // console.log(assassin_id);
-          res.redirect('assassins_all/' + assassin_insert_id);
+          res.redirect(`assassins_all/:${assassin_id}`);
       })
       .catch((err) => {
           t.rollback();
@@ -289,13 +289,5 @@ router.get('/assassins_all/delete/:id', (req, res, next) => {
     res.redirect('/assassins_all');
 
 });
-
-// // delete an assassin and redirect to confirmation page
-// router.get('/assassins_all/assassin_deleted/:id', (req, res, next) => {
-
-//   let deleted_assassin = req.params.id;
-//   res.render('/assassins_all/assassin_deleted', {deleted_assassin});
-
-// });
 
 module.exports = router;
