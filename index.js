@@ -74,6 +74,21 @@ app.get('/', function(req, res){ res.redirect('assassins_all')});
 //     res.render('index', { title: 'Killbase' });
 // });
 
+// ################ FROM HEROKU INSTRUCTIONS ##################
+// app.get('/db', async (req, res) => {
+//     try {
+//       const client = await pool.connect()
+//       const result = await client.query('SELECT * FROM test_table');
+//       const results = { 'results': (result) ? result.rows : null};
+//       res.render('pages/db', results );
+//       client.release();
+//     } catch (err) {
+//       console.error(err);
+//       res.send("Error " + err);
+//     }
+//   })
+// ############################################################
+
 app.use((_req, res) => {
     res.sendStatus(404);
 });
@@ -94,4 +109,11 @@ app.listen(PORT, function() {
 console.log("listening on port: ", PORT);
 });
 
+<<<<<<< HEAD
 module.exports = app, mocha, chai, router;
+=======
+
+
+
+
+>>>>>>> parent of 209c28d... added contract listings to assassin profile and edit pages
