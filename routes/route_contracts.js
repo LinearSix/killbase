@@ -25,13 +25,12 @@ router.get('/contracts_all/:id', (req, res, next) => {
     .where('contract_id', Number(req.params.id))
     .innerJoin('clients', 'contract_client_id', 'client_id')
     .innerJoin('assassins', 'completed_by', 'assassin_id')
-    // .innerJoin('code_names', 'assassin_id', 'code_assassin')
+    .innerJoin('code_names', 'assassin_id', 'code_assassin')
     .then((contracts) => {
       console.log(contracts)
       return knex('assassins')
       .innerJoin('ass_cont', 'ass_cont_assassin', 'assassin_id')
       .innerJoin('contracts', 'ass_cont_contract', 'contract_id')
-      .innerJoin('code_names', 'assassin_id', 'code_assassin')
       .where('ass_cont_contract', req.params.id)
       .then((assassins) => {
         // console.log(contracts)
@@ -137,33 +136,6 @@ router.get('/contracts_all/edit/:id', (req, res, next) => {
       next(err);
     });
 });
-
-// console.log(req.params.id)
-//   knex('contracts')
-//     .where('contract_id', Number(req.params.id))
-//     .innerJoin('clients', 'contract_client_id', 'client_id')
-//     .innerJoin('assassins', 'completed_by', 'assassin_id')
-//     // .innerJoin('code_names', 'assassin_id', 'code_assassin')
-//     .then((contracts) => {
-//       console.log(contracts)
-//       return knex('assassins')
-//       .innerJoin('ass_cont', 'ass_cont_assassin', 'assassin_id')
-//       .innerJoin('contracts', 'ass_cont_contract', 'contract_id')
-//       .innerJoin('code_names', 'assassin_id', 'code_assassin')
-//       .where('ass_cont_contract', req.params.id)
-//       .then((assassins) => {
-//         // console.log(contracts)
-//         // console.log(assassins)
-//         if (assassins === {}) {
-//           assassins = {'assassin_id': 1, 'assassin_name': 'none'}
-//         }
-//           res.render('contract_detail', { contracts, assassins });
-//       })
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// }); 
 
 // add a new contract
 let contract_insert_id;

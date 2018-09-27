@@ -10,40 +10,34 @@
 <body>
     <form method="POST" action="/assassins_all/update">
     <% include ./partials/nav %>
+    <% for(var i=0; i<assassins.length; i++) {%>
         
-        <div class='div_assassin'>
-            <table>
-                <tr>
-                    <td colspan="2"><h3>Edit Assassin</h3></td>
-                </tr>
-                <tr>
-                    <td><img class="thumb" src="<%= assassins[0].assassin_photo %>"></td>
-                    <td>Name: <input type="text" name="assassin_name" value="<%= assassins[0].assassin_name %>">
-                    <br/>Code Names: 
-                    <% for(var i=0; i<code_names.length; i++) {%>
-                        <%= code_names[i].code_name %>, 
-                    <% } %><button type="button">Manage Code Names</button>
-                    <br/>Contact: <input type="text" name="assassin_contact" value="<%= assassins[0].assassin_contact %>">
-                    <br/>Weapon: <input type="text" name="weapon" value="<%= assassins[0].weapon %>">
-                    <br/>Age: <input type="text" name="age" value="<%= assassins[0].age %>">
-                    <br/>Price: $<input type="text" name="price" value="<%= assassins[0].price %>">K
-                    <br/>Rating: <input type="text" name="rating" value="<%= assassins[0].rating %>">
-                    <br/>Kills: <input type="text" name="kills" value="<%= assassins[0].kills %>">
-                    <br/>Assigned to Contracts: 
-                    <% for(var j=0; j<contracts.length; j++) {%>
-                        <%= contracts[j].target_name %>, 
-                    <% } %>
-                    <input type="hidden" name="assassin_id" value="<%= assassins[0].assassin_id %>">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button type="submit">UPDATE</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <div class='div_assassin'>
+                <table>
+                    <tr>
+                        <td colspan="2"><h3>Edit Assassin</h3></td>
+                    </tr>
+                    <tr>
+                        <td><img class="thumb" src="<%= assassins[i].assassin_photo %>"></td>
+                        <td>Name: <input type="text" name="assassin_name" value="<%= assassins[i].assassin_name %>">
+                        <br/>Contact: <input type="text" name="assassin_contact" value="<%= assassins[i].assassin_contact %>">
+                        <br/>Weapon: <input type="text" name="weapon" value="<%= assassins[i].weapon %>">
+                        <br/>Age: <input type="text" name="age" value="<%= assassins[i].age %>">
+                        <br/>Price: $<input type="text" name="price" value="<%= assassins[i].price %>">K
+                        <br/>Rating: <input type="text" name="rating" value="<%= assassins[i].rating %>">
+                        <br/>Kills: <input type="text" name="kills" value="<%= assassins[i].kills %>">
+                        <input type="hidden" name="assassin_id" value="<%= assassins[i].assassin_id %>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">UPDATE</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
+    <% } %>
     </form>
 </body>
 </html>
