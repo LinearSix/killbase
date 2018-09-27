@@ -28,6 +28,7 @@
     "nodemon": "^1.18.4",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "npm": "^6.4.1",
     "pg": "^7.4.3",
     "sudo": "^1.0.3"
@@ -35,6 +36,9 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "supertest": "^3.3.0"
+=======
+    "pg": "^7.4.3"
+>>>>>>> parent of 209c28d... added contract listings to assassin profile and edit pages
 =======
     "pg": "^7.4.3"
 >>>>>>> parent of 209c28d... added contract listings to assassin profile and edit pages

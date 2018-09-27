@@ -62,17 +62,34 @@ const index = require('./routes');
 const assassins_show = require('./routes/route_assassins');
 const clients_show = require('./routes/route_clients');
 const contracts_show = require('./routes/route_contracts');
+const users = require('./routes/users');
 
 app.use('/api/v1', index);
 app.use(assassins_show);
 app.use(clients_show);
 app.use(contracts_show);
+app.use(users);
 
 app.get('/', function(req, res){ res.redirect('assassins_all')});
 
 // router.get('/', (req, res, next) => {
 //     res.render('index', { title: 'Killbase' });
 // });
+
+// ################ FROM HEROKU INSTRUCTIONS ##################
+// app.get('/db', async (req, res) => {
+//     try {
+//       const client = await pool.connect()
+//       const result = await client.query('SELECT * FROM test_table');
+//       const results = { 'results': (result) ? result.rows : null};
+//       res.render('pages/db', results );
+//       client.release();
+//     } catch (err) {
+//       console.error(err);
+//       res.send("Error " + err);
+//     }
+//   })
+// ############################################################
 
 // ################ FROM HEROKU INSTRUCTIONS ##################
 // app.get('/db', async (req, res) => {
@@ -126,8 +143,11 @@ console.log("listening on port: ", PORT);
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 module.exports = app, mocha, chai, router;
 =======
+=======
+>>>>>>> parent of 209c28d... added contract listings to assassin profile and edit pages
 =======
 >>>>>>> parent of 209c28d... added contract listings to assassin profile and edit pages
 
